@@ -95,5 +95,5 @@ const BullNFT = sequelize.define('BullNFT', {
  }, 
 );
 
-return BullNFT;
+  return BullNFT;
 }

@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 
 const BullNftRoutes = require ('./routes/NftRoute')
+const UserRoutes = require ('./routes/UserRoute')
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/bullnft', BullNftRoutes)
+app.use('/api/users', UserRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

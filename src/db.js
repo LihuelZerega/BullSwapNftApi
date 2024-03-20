@@ -22,12 +22,15 @@ sequelize
   });
 
 const NftModel = require("./models/NftModel");
+const UserModel = require("./models/UserModel");
 
 const BullsNftModel = NftModel(sequelize);
+const UserModel = UserModel(sequelize);
 
 sequelize.sync();
 
 module.exports = {
   sequelize,
   BullsNftModel,
+  UserModel,
 };
