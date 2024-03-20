@@ -32,6 +32,11 @@ const BullNFT = sequelize.define('BullNFT', {
     type: DataTypes.FLOAT,
     allowNull: true
   },
+  priceEth: {
+    type: DataTypes.DECIMAL(10, 5),
+    allowNull: false,
+    defaultValue: 0
+  },
   description: {
     type: DataTypes.STRING,
     allowNull: true
