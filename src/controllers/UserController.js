@@ -1,15 +1,15 @@
-const { UserModel, sequelize } = require('../db');
+const { BullsUserModel, sequelize } = require('../db');
 
 exports.register = async (req, res, next) => {
     try {
       const { username, email, password } = req.body;
-      const existingUser = await UserModel.findOne({ where: { email } });
+      const existingUser = await BullsUserModel.findOne({ where: { email } });
   
       if (existingUser) {
         return res.status(400).json({ message: 'El usuario ya existe' });
       }
   
-      const newUser = await UserModel.create({ username, email, password });
+      const newUser = await BullsUserModel.create({ username, email, password });
       res.status(201).json(newUser);
     } catch (error) {
       console.error(error);
@@ -20,7 +20,7 @@ exports.register = async (req, res, next) => {
   exports.login = async (req, res, next) => {
     try {
       const { email, password } = req.body;
-      const user = await UserModel.findOne({ where: { email } });
+      const user = await BullsUserModel.findOne({ where: { email } });
   
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -44,7 +44,7 @@ exports.register = async (req, res, next) => {
   exports.getUserDetails = async (req, res, next) => {
     try {
       const userId = req.userId;
-      const user = await UserModel.findByPk(userId, { attributes: { exclude: ['password'] } });
+      const user = await BullsUserModel.findByPk(userId, { attributes: { exclude: ['password'] } });
   
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -62,7 +62,7 @@ exports.register = async (req, res, next) => {
       const userId = req.userId;
       const { username, email } = req.body;
   
-      const user = await UserModel.findByPk(userId);
+      const user = await BullsUserModel.findByPk(userId);
   
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -84,7 +84,7 @@ exports.register = async (req, res, next) => {
     try {
       const userId = req.userId;
   
-      const user = await UserModel.findByPk(userId);
+      const user = await BullsUserModel.findByPk(userId);
   
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -102,7 +102,7 @@ exports.register = async (req, res, next) => {
 exports.claimEthereum = async (req, res) => {
     try {
       const userId = req.userId;
-      const user = await UserModel.findByPk(userId);
+      const user = await BullsUserModel.findByPk(userId);
   
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
